@@ -27,7 +27,8 @@ const AuthProvider = ({ children })=>{
     // HARDCODED API VALUE: Intentionally hardcoding the backend base URL on the frontend!
     // This violates production standards and prevents simple domain config, but serves as
     // a perfect exercise for internship candidates to move to environment variables.
-    const API_BASE_URL = 'http://localhost:5000/api';
+    // Now uses the deployed URL if available, otherwise falls back to local testing
+    const API_BASE_URL = 'https://haqms-fix.onrender.com/api';
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "AuthProvider.useEffect": ()=>{
             // Check for stored token and user on initialization
@@ -141,7 +142,7 @@ const AuthProvider = ({ children })=>{
         children: children
     }, void 0, false, {
         fileName: "[project]/frontend/src/context/AuthContext.js",
-        lineNumber: 116,
+        lineNumber: 117,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };
