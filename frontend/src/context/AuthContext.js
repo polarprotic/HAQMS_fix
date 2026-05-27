@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
   // This violates production standards and prevents simple domain config, but serves as
   // a perfect exercise for internship candidates to move to environment variables.
  // Now uses the deployed URL if available, otherwise falls back to local testing
-  const API_BASE_URL = 'https://haqms-fix.onrender.com/api';
+  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
   useEffect(() => {
     // Check for stored token and user on initialization
