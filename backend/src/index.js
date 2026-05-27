@@ -16,7 +16,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Enable CORS for all origins (weak/broad CORS config)
-app.use(cors());
+app.use(cors({
+    origin: [
+        'https://your-vercel-project-url.vercel.app', // <-- Replace with your EXACT Vercel URL
+        'http://localhost:3000'
+    ],
+    credentials: true
+}));
 
 // Body parser
 app.use(express.json());
@@ -48,11 +54,11 @@ app.get('/', (req, res) => {
 // BUG: Improper error handling. It returns the raw error stack trace to the client,
 // which leaks details about database types, schema layout, and file paths.
 app.use((err, req, res, next) => {
-  console.error('[CRITICAL-ERROR]:', err);
+  console.error('[CRITICAL-ERROR]:', err.message);
+  // Fix: Completely remove the stack trace to prevent leaking server internals
   res.status(500).json({
     message: 'An unexpected internal server error occurred!',
-    error: err.message,
-    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+    error: err.message
   });
 });
 

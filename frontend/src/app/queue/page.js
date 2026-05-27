@@ -11,7 +11,8 @@ export default function QueueMonitor() {
   
   const [refreshCount, setRefreshCount] = useState(0);
 
-  const API_BASE_URL = 'http://localhost:5000/api';
+  // ✅ AFTER
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
   const fetchQueueData = async () => {
     try {
